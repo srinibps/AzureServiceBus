@@ -22,24 +22,21 @@ After that is called, it will cache those settings and use them for authenticati
 
 ### Commands
 
-	1. Set-ServiceBusConfig: Used to set the configuration for future calls.  See Instructions section.
-	1. Get-ServiceBusConfig: Returns the current ServiceBus configuration.
-	1. Add-ServiceBusMessage: Adds a message to the ServiceBus queue.  Takes a single paramenter "message" that should be a string.
-		REST: https://msdn.microsoft.com/en-us/library/azure/hh780786.aspx
-		```
+* Set-ServiceBusConfig: Used to set the configuration for future calls.  See Instructions section.
+* Get-ServiceBusConfig: Returns the current ServiceBus configuration.
+* Add-ServiceBusMessage: Adds a message to the ServiceBus queue.  Takes a single paramenter "message" that should be a string.  https://msdn.microsoft.com/en-us/library/azure/hh780786.aspx
+```
 		Add-ServiceBusMessage -Message "some sting that could be whatever including serialize json or xml"
-		```
-	1. Get-ServiceBusMessagePeekLock: Gets and locks a message from the queue.  Returns a message object containing the BrokerProperties and Body of the message.
-		REST: https://msdn.microsoft.com/en-us/library/azure/hh780722.aspx
-	1. Get-ServiceBusMessageReceiveDelete: Gets and deletes a message from the queue.
-		REST: https://msdn.microsoft.com/en-us/library/azure/hh780770.aspx
-	1. Unlock-ServiceBusMessage: Unlocks a message that was locked by Get-ServiceBusMessagePeekLock.
-		REST: https://msdn.microsoft.com/en-us/library/azure/hh780737.aspx
-		```
+```
+* Get-ServiceBusMessagePeekLock: Gets and locks a message from the queue.  Returns a message object containing the BrokerProperties and Body of the message.  https://msdn.microsoft.com/en-us/library/azure/hh780722.aspx
+
+* Get-ServiceBusMessageReceiveDelete: Gets and deletes a message from the queue.  https://msdn.microsoft.com/en-us/library/azure/hh780770.aspx
+
+* Unlock-ServiceBusMessage: Unlocks a message that was locked by Get-ServiceBusMessagePeekLock.  https://msdn.microsoft.com/en-us/library/azure/hh780737.aspx
+```
 		Unlock-ServiceBusMessage -Message {messageOjectFromGet-ServiceBusMessagePeekLock}
-		```
-	1. Remove-ServiceBusMessage: Deletes a message that was previously locked by Get-ServiceBusMessagePeekLock.
-		REST: https://msdn.microsoft.com/en-us/library/azure/hh780768.aspx
-		```
+```
+* Remove-ServiceBusMessage: Deletes a message that was previously locked by Get-ServiceBusMessagePeekLock.  https://msdn.microsoft.com/en-us/library/azure/hh780768.aspx
+```
 		Remove-ServiceBusMessage -Message {messageOjectFromGet-ServiceBusMessagePeekLock}
-		```
+```
