@@ -1,0 +1,31 @@
+{
+	"ConnectionFields": [
+		{
+			"IsEncrypted": false,
+			"IsOptional": false,
+			"Name": "Namespace",
+			"TypeName": "System.String"
+		},
+		{
+			"IsEncrypted": false,
+			"IsOptional": false,
+			"Name": "Queue",
+			"TypeName": "System.String"
+		},
+		{
+			"IsEncrypted": false,
+			"IsOptional": false,
+			"Name": "PolicyName",
+			"TypeName": "System.String"
+		},
+		{
+			"IsEncrypted": true,
+			"IsOptional": false,
+			"Name": "Key",
+			"TypeName": "System.String"
+		}
+
+	],
+	"ConnectionTypeName": "AzureServiceBusRest",
+	"IntegrationModuleName": "AzureServiceBusRest"
+}
