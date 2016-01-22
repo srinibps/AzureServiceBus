@@ -1,14 +1,16 @@
 Function Get-ServiceBusMessageReceiveDelete
 {
-    UpdateAzureServiceBusToken
+    <#
+    .SYNOPSIS
+        Reads and deletes a message from a queue or subscription as an atomic operation.
+    .DESCRIPTION
+        This operation receives a message from a queue or subscription, and removes the message from that queue or subscription in one atomic operation.
+    .LINK
+        https://msdn.microsoft.com/en-us/library/azure/hh780770.aspx
+    #>
 
-    $GetMessageUrl =  "https://{0}.servicebus.windows.net/{1}/messages/head" -f $script:Namespace, $script:Queue
-    $Headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
-    $Headers.Add("Authorization",$SasToken)
-    $Headers.Add("Host",("{0}.servicebus.windows.net" -f $Namespace))
-    $response = Invoke-WebRequest $GetMessageUrl -Method DELETE -Headers $Headers
-    
+    $Url =  "https://{0}.servicebus.windows.net/{1}/messages/head" -f $script:Namespace, $script:Queue
+    $response = SendWebRequest -Url $Url -Method DELETE
     $message = ParseMessage($response)
-    
-    return $message
+    $message
 }

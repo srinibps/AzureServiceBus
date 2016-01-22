@@ -1,14 +1,20 @@
 function Remove-ServiceBusMessage
 {
+    <#
+    .SYNOPSIS
+        Completes processing on a locked message and deletes it from the queue or subscription.
+    .DESCRIPTION
+        This operation completes the processing of a locked message and deletes it from the queue or subscription. This operation should only be called after successfully processing a previously locked message, in order to maintain At-Least-Once delivery assurances.
+    .PARAMETER Message
+        This should be the message object returned by Get-ServiceMessagePeekLock or GetServiceBusMessageReceiveDelete
+    .LINK
+        https://msdn.microsoft.com/en-us/library/azure/hh780768.aspx
+    #>
+
     param (
     	$Message
     )
-    
-    UpdateAzureServiceBusToken
 
-    $url =  "https://{0}.servicebus.windows.net/{1}/messages/{2}/{3}" -f $script:Namespace, $script:Queue, $Message.MessageId, $Message.LockToken
-    $Headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
-    $Headers.Add("Authorization",$SasToken)
-    $Headers.Add("Host",("{0}.servicebus.windows.net" -f $Namespace))
-    Invoke-WebRequest $url -Method DELETE -Headers $Headers
+    $Url =  "https://{0}.servicebus.windows.net/{1}/messages/{2}/{3}" -f $script:Namespace, $script:Queue, $Message.MessageId, $Message.LockToken
+    $response = SendWebRequest -Url $Url -Method DELETE
 }

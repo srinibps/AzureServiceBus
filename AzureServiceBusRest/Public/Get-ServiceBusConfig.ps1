@@ -7,10 +7,6 @@ Function Get-ServiceBusConfig
         Gets the configuration for further ServiceBus calls
     #>
 	
-	[cmdletbinding()]
-	param(
-
-	)
 	
 	@{
 		Namespace = $script:Namespace
