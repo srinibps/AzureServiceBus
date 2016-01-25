@@ -9,8 +9,14 @@ Function Get-ServiceBusMessageReceiveDelete
         https://msdn.microsoft.com/en-us/library/azure/hh780770.aspx
     #>
 
-    $Url =  "https://{0}.servicebus.windows.net/{1}/messages/head" -f $script:Namespace, $script:Queue
-    $response = SendWebRequest -Url $Url -Method DELETE
+    param
+    (
+        [ref]$Config
+    )
+
+    $Url =  "https://{0}.servicebus.windows.net/{1}/messages/head" -f $Config.Value.Namespace, $Config.Value.Queue
+    $response = SendWebRequest -Url $Url -Method DELETE -Config ([ref]$Config.Value)
     $message = ParseMessage($response)
     $message
+    
 }

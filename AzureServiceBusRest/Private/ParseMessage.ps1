@@ -5,7 +5,7 @@ function ParseMessage
 		$response
 	)
 
-    if ($response.StatusCode -eq "204")
+    if (!$response -or $response.StatusCode -eq "204")
     {
         return $null
     }

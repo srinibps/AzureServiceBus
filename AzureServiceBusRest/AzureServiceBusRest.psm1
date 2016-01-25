@@ -15,13 +15,6 @@ public class Message{
 }
 "@;
 
-$Namespace
-$Queue
-$PolicyName
-$Key
-$SasExpiration
-$SasToken
-
 #Get public and private function definition files.
     $Public = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 )
 	$Private = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 )

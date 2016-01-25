@@ -12,9 +12,10 @@ function Remove-ServiceBusMessage
     #>
 
     param (
-    	$Message
+    	$Message,
+        [ref]$Config
     )
 
-    $Url =  "https://{0}.servicebus.windows.net/{1}/messages/{2}/{3}" -f $script:Namespace, $script:Queue, $Message.MessageId, $Message.LockToken
-    $response = SendWebRequest -Url $Url -Method DELETE
+    $Url =  "https://{0}.servicebus.windows.net/{1}/messages/{2}/{3}" -f $Config.Value.Namespace, $Config.Value.Queue, $Message.MessageId, $Message.LockToken
+    $response = SendWebRequest -Url $Url -Method DELETE -Config ([ref]$Config.Value)
 }

@@ -25,10 +25,12 @@ Function Set-ServiceBusConfig
         [String]$Key
 	)
 	
-	$script:Namespace = $Namespace
-	$script:Queue = $Queue
-	$script:PolicyName = $PolicyName
-	$script:Key = $Key
-	$script:SasExpiration = ""
-	$script:SasToken = ""
+    @{
+    	Namespace = $Namespace
+    	Queue = $Queue
+    	PolicyName = $PolicyName
+    	Key = $Key
+    	SasExpiration = ""
+    	SasToken = ""
+    }
 }

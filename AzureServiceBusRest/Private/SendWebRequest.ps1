@@ -4,13 +4,14 @@ Function SendWebRequest
     (
         $Url,
         $Method,
-        $Content
+        $Content,
+        [ref]$Config
     )
 
-    UpdateAzureServiceBusToken
+    UpdateAzureServiceBusToken -Config ([ref]$Config.Value)
 
-    $headers = @{ "Authorization" = $script:SasToken
-                  "Host" = "{0}.servicebus.windows.net" -f $script:Namespace}
+    $headers = @{ "Authorization" = $Config.Value.SasToken
+                  "Host" = "{0}.servicebus.windows.net" -f $Config.Value.Namespace}
 
     if ($Content)
     {

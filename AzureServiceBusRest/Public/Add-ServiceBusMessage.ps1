@@ -15,10 +15,10 @@ Function Add-ServiceBusMessage
 
 	param (
 		[alias('Message')]
-		[string]$messageString
+		[string]$messageString,
+        [ref]$Config
 	)
 
-    $Url =  "https://{0}.servicebus.windows.net/{1}/messages" -f $script:Namespace, $script:Queue
-    $response = SendWebRequest -Url $Url -Method POST -Content $messageString
-
+    $Url =  "https://{0}.servicebus.windows.net/{1}/messages" -f $Config.Value.Namespace, $Config.Value.Queue
+    $response = SendWebRequest -Url $Url -Method POST -Content  $messageString -Config ([ref]$Config.Value)
 }

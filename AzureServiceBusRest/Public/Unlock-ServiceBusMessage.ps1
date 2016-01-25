@@ -12,9 +12,10 @@ Function Unlock-ServiceBusMessage
     #>
 
     param(
-    	$Message
+    	$Message,
+        [ref]$Config
     )
 
-    $Url =  "https://{0}.servicebus.windows.net/{1}/messages/{2}/{3}" -f $script:Namespace, $script:Queue, $Message.MessageId, $Message.LockToken
-    $response = SendWebRequest -Url $Url -Method PUT
+    $Url =  "https://{0}.servicebus.windows.net/{1}/messages/{2}/{3}" -f $Config.Value.Namespace, $Config.Value.Queue, $Message.MessageId, $Message.LockToken
+    $response = $response = SendWebRequest -Url $Url -Method PUT -Config ([ref]$Config.Value)
 }
